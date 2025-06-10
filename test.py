@@ -50,11 +50,16 @@ def test_bot(model, inputs, prompt, examples):
             response = get_response(model, prompt, assistant).json()
             response = response['choices'][0]['message']['content'].split("\n")
 
+            if "false" in response[-1].lower():
+                response = False
+            else:
+                response = True
+
             print(f"Statement: {statement}")
             print(f"Answer: {answer}")
-            print(f"Response: {response[-1]}", "\n")
+            print(f"Response: {response}", "\n")
 
-            if str(answer) in response[-1]:
+            if answer == response:
                  correct += 1
         if correct > 0:
             percent_correct = round((correct/total)*100, 2)
@@ -66,7 +71,12 @@ def test_bot(model, inputs, prompt, examples):
 model = "mistralai/mistral-7b-instruct-v0.3"
 inputs = {"Kamala Harris campaign news": True, "restaurants in Boston": False, "2024 election poll": True, "met gala worst looks": False}
 
-prompt = f"You are an analyst who decided whether search queries are political in nature. For a given input, respond with one word: True or False."
+prompt = f"""
+        You are an analyst who decided whether search queries are political in nature. 
+        A search query is political if it pertains to governments, politicians, elections, public policies, or ideologically charged social issues.
+        Respond strictly with one word: True or False.
+        """
+
 examples = f""
 
 test_bot(model, inputs, prompt, examples)
