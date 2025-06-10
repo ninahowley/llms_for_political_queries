@@ -64,7 +64,7 @@ def test_bot(model, inputs, prompt, examples):
         print(f"Percent correct: {percent_correct}%")
 
 model = "mistralai/mistral-7b-instruct-v0.3"
-inputs = {"query 1": True, "query 2": False}
+inputs = {"Kamala Harris campaign news": True, "restaurants in Boston": False, "2024 election poll": True, "met gala worst looks": False}
 
 prompt = f"You are an analyst who decided whether search queries are political in nature. For a given input, respond with one word: True or False."
 examples = f""
