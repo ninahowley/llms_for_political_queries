@@ -38,24 +38,23 @@ def get_response(model, prompt, input):
     )
     return response
 
-def test_bot(model, inputs, prompt, examples):
+def test_bot(model, inputs, prompt):
         total = len(inputs)
         correct = 0
         for input in inputs:
             statement = input
             answer = inputs[input]
 
-            assistant = prompt + examples
-
-            response = get_response(model, prompt, assistant).json()
+            response = get_response(model, f"query: {input}", prompt).json()
             response = response['choices'][0]['message']['content'].split("\n")
 
+            print(response[-1])
             if "false" in response[-1].lower():
                 response = False
             else:
                 response = True
 
-            print(f"Statement: {statement}")
+            print(f"Query: {statement}")
             print(f"Answer: {answer}")
             print(f"Response: {response}", "\n")
 
@@ -71,12 +70,11 @@ def test_bot(model, inputs, prompt, examples):
 model = "mistralai/mistral-7b-instruct-v0.3"
 inputs = {"Kamala Harris campaign news": True, "restaurants in Boston": False, "2024 election poll": True, "met gala worst looks": False}
 
-prompt = f"""
+prompt = """
         You are an analyst who decided whether search queries are political in nature. 
         A search query is political if it pertains to governments, politicians, elections, public policies, or ideologically charged social issues.
-        Respond strictly with one word: True or False.
+        A search query is non-political when it focuses on personal interests, entertainment, scientific topics, or general daily life unrelated to governance or ideological debates.
+        Respond strictly with one word: True or False (of whether the query is political).
         """
 
-examples = f""
-
-test_bot(model, inputs, prompt, examples)
+test_bot(model, inputs, prompt)
