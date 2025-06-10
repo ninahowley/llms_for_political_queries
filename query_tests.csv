@@ -1,0 +1,11 @@
+model,query,answer,response
+mistralai/mistral-7b-instruct-v0.3,kamala harris campaign news,True,True
+mistralai/mistral-7b-instruct-v0.3,2024 election poll,True,True
+mistralai/mistral-7b-instruct-v0.3,who is running for president in 2028,True,True
+mistralai/mistral-7b-instruct-v0.3,impact of new immigration laws on economy,True,True
+mistralai/mistral-7b-instruct-v0.3,arguments for and against universal healthcare,True,True
+mistralai/mistral-7b-instruct-v0.3,met gala worst looks,False,False
+mistralai/mistral-7b-instruct-v0.3,restaurants in boston,False,False
+mistralai/mistral-7b-instruct-v0.3,wellesley college academic calendar 2024-2025,False,True
+mistralai/mistral-7b-instruct-v0.3,Latest advancements in quantum computing,False,True
+mistralai/mistral-7b-instruct-v0.3,How to bake sourdough bread,False,True
